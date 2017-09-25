@@ -728,6 +728,20 @@ typedef  int         uid_t;
 typedef  int         gid_t;
 #endif
 
+
+/* Typically defined in stdio.h or unistd.h
+ */
+ #ifndef STDIN_FILENO
+ #define STDIN_FILENO  0
+ #endif
+ #ifndef STDOUT_FILENO
+ #define STDOUT_FILENO 1
+ #endif
+ #ifndef STDERR_FILENO
+ #define STDERR_FILENO 2
+ #endif
+
+
 #ifdef __cplusplus
 }
 #endif
