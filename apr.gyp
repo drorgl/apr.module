@@ -271,7 +271,6 @@
                         "src/time/unix/time.c",
 
                         "src/dbm/apr_dbm.c",
-                        "src/misc/win32/utf8.c",
 
 
                     ],
@@ -555,27 +554,7 @@
             ]
         },
         
-        {
-            'target_name': 'testucs',
-            'type': 'executable',
-            'dependencies': [
-                'apr'
-            ],
-            'include_dirs':[
-               
-            ],
-            "defines":[
-            ],
-            'direct_dependent_settings': {
-                'include_dirs': [
-                ],
-                "defines":[
-                ],
-            },
-            'sources':[
-                "src/test/internal/testucs.c",
-            ]
-        },
+        
         
          {
             'target_name': 'occhild',
@@ -981,6 +960,31 @@
         },
         ],
         'conditions':[
+            ['OS == "win"',{
+                'targets':[
+                    {
+                        'target_name': 'testucs',
+                        'type': 'executable',
+                        'dependencies': [
+                            'apr'
+                        ],
+                        'include_dirs':[
+                        
+                        ],
+                        "defines":[
+                        ],
+                        'direct_dependent_settings': {
+                            'include_dirs': [
+                            ],
+                            "defines":[
+                            ],
+                        },
+                        'sources':[
+                            "src/test/internal/testucs.c",
+                        ]
+                    },
+                ]
+            }],
             ['OS == "beos"',{
                 'targets':[
                     {
