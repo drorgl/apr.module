@@ -97,7 +97,6 @@
 			],
 			'cflags':[
 				'-fPIC',
-				'-std=c++11',
 				'-fexceptions',
 			],
 			'cflags!': [ '-fno-exceptions' ],
@@ -136,8 +135,7 @@
             'include_dirs':[
                 "src/include",
                 "src/include/private",
-                "src/include/arch/win32",
-                "src/include/arch/unix",
+                
                 "config",
                 "config/<(OS)",
                 "config/<(OS)/<(target_arch)",
@@ -149,8 +147,7 @@
             'direct_dependent_settings': {
                 'include_dirs': [
                     "src/include",
-                    "src/include/arch/win32",
-                    "src/include/arch/unix",
+
                     "config",
                     "config/<(OS)",
                     "config/<(OS)/<(target_arch)",
@@ -159,15 +156,151 @@
                 ],
             },
             'conditions':[
+                ['OS == "linux"',{
+                    'include_dirs':[
+                        "src/include/arch/unix",
+                    ],
+                    'direct_dependent_settings': {
+                        'include_dirs': [
+                            "src/include/arch/unix",
+                        ]
+                    },
+                    'sources':[
+                        "src/shmem/unix",
+                        "src/shmem/unix/shm.c",
+                        "src/misc/unix",
+                        "src/misc/unix/start.c",
+                        "src/misc/unix/errorcodes.c",
+                        "src/misc/unix/otherchild.c",
+                        "src/misc/unix/rand.c",
+                        "src/misc/unix/randbyte_os2.inc",
+                        "src/misc/unix/charset.c",
+                        "src/misc/unix/getopt.c",
+                        "src/misc/unix/env.c",
+                        "src/misc/unix/version.c",
+                        "src/locks/unix",
+                        "src/locks/unix/thread_mutex.c",
+                        "src/locks/unix/proc_mutex.c",
+                        "src/locks/unix/global_mutex.c",
+                        "src/locks/unix/thread_cond.c",
+                        "src/locks/unix/thread_rwlock.c",
+                        "src/memory/unix",
+                        "src/memory/unix/apr_pools.c",
+                        "src/network_io/unix",
+                        "src/network_io/unix/sockets.c",
+                        "src/network_io/unix/multicast.c",
+                        "src/network_io/unix/sendrecv.c",
+                        "src/network_io/unix/socket_util.c",
+                        "src/network_io/unix/inet_ntop.c",
+                        "src/network_io/unix/sockopt.c",
+                        "src/network_io/unix/sockaddr.c",
+                        "src/network_io/unix/inet_pton.c",
+                        "src/atomic/unix",
+                        "src/atomic/unix/mutex.c",
+                        "src/atomic/unix/s390.c",
+                        "src/atomic/unix/solaris.c",
+                        "src/atomic/unix/builtins.c",
+                        "src/atomic/unix/ia32.c",
+                        "src/atomic/unix/ppc.c",
+                        "src/poll/unix",
+                        "src/poll/unix/poll.c",
+                        "src/poll/unix/epoll.c",
+                        "src/poll/unix/z_asio.c",
+                        "src/poll/unix/pollset.c",
+                        "src/poll/unix/pollcb.c",
+                        "src/poll/unix/select.c",
+                        "src/poll/unix/kqueue.c",
+                        "src/poll/unix/wakeup.c",
+                        "src/poll/unix/port.c",
+                        "src/mmap/unix",
+                        "src/mmap/unix/common.c",
+                        "src/mmap/unix/mmap.c",
+                        "src/support/unix",
+                        "src/support/unix/waitio.c",
+                        "src/dso/unix",
+                        "src/dso/unix/dso.c",
+                        "src/user/unix",
+                        "src/user/unix/userinfo.c",
+                        "src/user/unix/groupinfo.c",
+                        "src/random/unix",
+                        "src/random/unix/sha2.h",
+                        "src/random/unix/apr_random.c",
+                        "src/random/unix/sha2_glue.c",
+                        "src/random/unix/sha2.c",
+                        "src/file_io/unix",
+                        "src/file_io/unix/tempdir.c",
+                        "src/file_io/unix/pipe.c",
+                        "src/file_io/unix/seek.c",
+                        "src/file_io/unix/filedup.c",
+                        "src/file_io/unix/buffer.c",
+                        "src/file_io/unix/filepath_util.c",
+                        "src/file_io/unix/open.c",
+                        "src/file_io/unix/copy.c",
+                        "src/file_io/unix/dir.c",
+                        "src/file_io/unix/fileacc.c",
+                        "src/file_io/unix/flock.c",
+                        "src/file_io/unix/mktemp.c",
+                        "src/file_io/unix/filepath.c",
+                        "src/file_io/unix/fullrw.c",
+                        "src/file_io/unix/filestat.c",
+                        "src/file_io/unix/printf.c",
+                        "src/file_io/unix/readwrite.c",
+                        "src/threadproc/unix",
+                        "src/threadproc/unix/procsup.c",
+                        "src/threadproc/unix/threadpriv.c",
+                        "src/threadproc/unix/proc.c",
+                        "src/threadproc/unix/thread.c",
+                        "src/threadproc/unix/signals.c",
+                        "src/include/arch/unix",
+                        "src/include/arch/unix/apr_arch_thread_cond.h",
+                        "src/include/arch/unix/apr_arch_thread_mutex.h",
+                        "src/include/arch/unix/apr_arch_networkio.h",
+                        "src/include/arch/unix/apr_arch_dso.h",
+                        "src/include/arch/unix/apr_arch_file_io.h",
+                        "src/include/arch/unix/apr_arch_global_mutex.h",
+                        "src/include/arch/unix/apr_arch_proc_mutex.h",
+                        "src/include/arch/unix/apr_arch_inherit.h",
+                        "src/include/arch/unix/apr_arch_thread_rwlock.h",
+                        "src/include/arch/unix/apr_arch_shm.h",
+                        "src/include/arch/unix/apr_arch_atomic.h",
+                        "src/include/arch/unix/apr_arch_threadproc.h",
+                        "src/include/arch/unix/apr_arch_misc.h",
+                        "src/include/arch/unix/apr_arch_poll_private.h",
+                        "src/include/arch/unix/apr_arch_internal_time.h",
+                        "src/time/unix/timestr.c",
+                        "src/time/unix/time.c",
+
+                        "src/dbm/apr_dbm.c",
+
+
+                    ],
+                    'link_settings':{
+                        'libraries':[
+                            '-lpthread',
+                            '-ldl',
+                            '-luuid',
+                            '-lcrypt',
+                        ]
+                    },
+                }],
 				['OS != "win"',{
 					'sources':[
 					],
 					'link_settings':{
 						'libraries':[
+
 						],
 					},
 				}],
 				['OS == "win"',{
+                    'include_dirs':[
+                        "src/include/arch/win32",
+                    ],
+                    'direct_dependent_settings': {
+                        'include_dirs': [
+                            "src/include/arch/unix",
+                        ]
+                    },
 					'link_settings': {
 						'libraries': [
 							'ws2_32.lib',
@@ -183,7 +316,46 @@
                             #'nss3.lib',
                             #'nspr4.lib'
 						]
-					}
+					},
+                    'sources':[
+                        "src/atomic/win32/apr_atomic.c",
+                        "src/dso/win32/dso.c",
+                        "src/file_io/win32/buffer.c",
+                        "src/file_io/win32/dir.c",
+                        "src/file_io/win32/filedup.c",
+                        "src/file_io/win32/filepath.c",
+                        "src/file_io/win32/filestat.c",
+                        "src/file_io/win32/filesys.c",
+                        "src/file_io/win32/flock.c",
+                        "src/file_io/win32/open.c",
+                        "src/file_io/win32/pipe.c",
+                        "src/file_io/win32/readwrite.c",
+                        "src/file_io/win32/seek.c",
+                        "src/locks/win32/proc_mutex.c",
+                        "src/locks/win32/thread_cond.c",
+                        "src/locks/win32/thread_mutex.c",
+                        "src/locks/win32/thread_rwlock.c",
+                        "src/misc/win32/charset.c",
+                        "src/misc/win32/env.c",
+                        "src/misc/win32/internal.c",
+                        "src/misc/win32/misc.c",
+                        "src/misc/win32/rand.c",
+                        "src/misc/win32/start.c",
+                        "src/misc/win32/utf8.c",
+                        "src/mmap/win32/mmap.c",
+                        "src/network_io/win32/sendrecv.c",
+                        "src/network_io/win32/sockets.c",
+                        "src/network_io/win32/sockopt.c",
+                        "src/shmem/win32/shm.c",
+                        "src/threadproc/win32/proc.c",
+                        "src/threadproc/win32/signals.c",
+                        "src/threadproc/win32/thread.c",
+                        "src/threadproc/win32/threadpriv.c",
+                        "src/time/win32/time.c",
+                        "src/time/win32/timestr.c",
+                        "src/user/win32/groupinfo.c",
+                        "src/user/win32/userinfo.c",
+                    ]
 				}]
 				
 			],
@@ -197,7 +369,9 @@
                 "src/apr.dsw",
                 "src/apr.pc.in",
 
-                "src/atomic/win32/apr_atomic.c",
+               
+
+
                 "src/buckets/apr_brigade.c",
                 "src/buckets/apr_buckets.c",
                 "src/buckets/apr_buckets_alloc.c",
@@ -221,13 +395,13 @@
                 "src/crypto/getuuid.c",
                 "src/crypto/uuid.c",
                 "src/dbd/apr_dbd.c",
-                #"src/dbm/apr_dbm.c",
+                
                 "src/dbm/apr_dbm_sdbm.c",
                 "src/dbm/sdbm/sdbm.c",
                 "src/dbm/sdbm/sdbm_hash.c",
                 "src/dbm/sdbm/sdbm_lock.c",
                 "src/dbm/sdbm/sdbm_pair.c",
-                "src/dso/win32/dso.c",
+                
                 "src/encoding/apr_base64.c",
                 "src/encoding/apr_escape.c",
                 "src/file_io/unix/copy.c",
@@ -236,45 +410,24 @@
                 "src/file_io/unix/fullrw.c",
                 "src/file_io/unix/mktemp.c",
                 "src/file_io/unix/tempdir.c",
-                "src/file_io/win32/buffer.c",
-                "src/file_io/win32/dir.c",
-                "src/file_io/win32/filedup.c",
-                "src/file_io/win32/filepath.c",
-                "src/file_io/win32/filestat.c",
-                "src/file_io/win32/filesys.c",
-                "src/file_io/win32/flock.c",
-                "src/file_io/win32/open.c",
-                "src/file_io/win32/pipe.c",
-                "src/file_io/win32/readwrite.c",
-                "src/file_io/win32/seek.c",
+                
                 "src/hooks/apr_hooks.c",
-                "src/locks/win32/proc_mutex.c",
-                "src/locks/win32/thread_cond.c",
-                "src/locks/win32/thread_mutex.c",
-                "src/locks/win32/thread_rwlock.c",
+                
                 "src/memcache/apr_memcache.c",
                 "src/memory/unix/apr_pools.c",
                 "src/misc/unix/errorcodes.c",
                 "src/misc/unix/getopt.c",
                 "src/misc/unix/otherchild.c",
                 "src/misc/unix/version.c",
-                "src/misc/win32/charset.c",
-                "src/misc/win32/env.c",
-                "src/misc/win32/internal.c",
-                "src/misc/win32/misc.c",
-                "src/misc/win32/rand.c",
-                "src/misc/win32/start.c",
-                "src/misc/win32/utf8.c",
+               
                 "src/mmap/unix/common.c",
-                "src/mmap/win32/mmap.c",
+                
                 "src/network_io/unix/inet_ntop.c",
                 "src/network_io/unix/inet_pton.c",
                 "src/network_io/unix/multicast.c",
                 "src/network_io/unix/sockaddr.c",
                 "src/network_io/unix/socket_util.c",
-                "src/network_io/win32/sendrecv.c",
-                "src/network_io/win32/sockets.c",
-                "src/network_io/win32/sockopt.c",
+                
                 "src/passwd/apr_getpass.c",
                 "src/poll/unix/poll.c",
                 "src/poll/unix/pollcb.c",
@@ -285,7 +438,7 @@
                 "src/random/unix/sha2.c",
                 "src/random/unix/sha2_glue.c",
                 "src/redis/apr_redis.c",
-                "src/shmem/win32/shm.c",
+                
                 "src/strings/apr_cpystrn.c",
                 "src/strings/apr_cstr.c",
                 "src/strings/apr_fnmatch.c",
@@ -297,15 +450,9 @@
                 "src/tables/apr_hash.c",
                 "src/tables/apr_skiplist.c",
                 "src/tables/apr_tables.c",
-                "src/threadproc/win32/proc.c",
-                "src/threadproc/win32/signals.c",
-                "src/threadproc/win32/thread.c",
-                "src/threadproc/win32/threadpriv.c",
-                "src/time/win32/time.c",
-                "src/time/win32/timestr.c",
+                
                 "src/uri/apr_uri.c",
-                "src/user/win32/groupinfo.c",
-                "src/user/win32/userinfo.c",
+                
                 "src/util-misc/apr_date.c",
                 "src/util-misc/apr_queue.c",
                 "src/util-misc/apr_reslist.c",
@@ -407,27 +554,7 @@
             ]
         },
         
-        {
-            'target_name': 'testucs',
-            'type': 'executable',
-            'dependencies': [
-                'apr'
-            ],
-            'include_dirs':[
-               
-            ],
-            "defines":[
-            ],
-            'direct_dependent_settings': {
-                'include_dirs': [
-                ],
-                "defines":[
-                ],
-            },
-            'sources':[
-                "src/test/internal/testucs.c",
-            ]
-        },
+        
         
          {
             'target_name': 'occhild',
@@ -833,7 +960,32 @@
         },
         ],
         'conditions':[
-            ['OS != "win"',{
+            ['OS == "win"',{
+                'targets':[
+                    {
+                        'target_name': 'testucs',
+                        'type': 'executable',
+                        'dependencies': [
+                            'apr'
+                        ],
+                        'include_dirs':[
+                        
+                        ],
+                        "defines":[
+                        ],
+                        'direct_dependent_settings': {
+                            'include_dirs': [
+                            ],
+                            "defines":[
+                            ],
+                        },
+                        'sources':[
+                            "src/test/internal/testucs.c",
+                        ]
+                    },
+                ]
+            }],
+            ['OS == "beos"',{
                 'targets':[
                     {
                         'target_name': 'apr_proc_stub',
@@ -856,6 +1008,10 @@
                             "src/threadproc/beos/apr_proc_stub.c",
                         ]
                     },
+                ]
+            }],
+            ['OS != "win"',{
+                'targets':[
                     {
                         'target_name': 'jlibtool',
                         'type': 'executable',
