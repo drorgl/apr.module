@@ -1,4 +1,8 @@
 ```
+sudo apt-get install libtool-bin
+```
+
+```
 git submodule init
 git submodule update
 git submodule sync
