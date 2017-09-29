@@ -295,6 +295,7 @@
 				['OS == "win"',{
                     'include_dirs':[
                         "src/include/arch/win32",
+                         "src/include/arch/unix",
                     ],
                     'direct_dependent_settings': {
                         'include_dirs': [
@@ -303,14 +304,14 @@
                     },
 					'link_settings': {
 						'libraries': [
-							'ws2_32.lib',
-                            'Advapi32.lib',
-                            'kernel32.lib',
-                            'mswsock.lib',
-                            'ole32.lib',
+							'-lws2_32.lib',
+                            '-lAdvapi32.lib',
+                            '-lkernel32.lib',
+                            '-lmswsock.lib',
+                            '-lole32.lib',
 
-                            'shell32.lib',
-                            'rpcrt4.lib',
+                            '-lshell32.lib',
+                            '-lrpcrt4.lib',
                             #'libexpat.lib',
 
                             #'nss3.lib',
